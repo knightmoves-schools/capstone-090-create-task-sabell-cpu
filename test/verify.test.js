@@ -35,6 +35,10 @@ beforeEach(async () => {
   await page.goto("http://localhost:3000/index.html");
 });
 
+afterEach(async () => {
+  await browser.close();
+});
+
 describe('the index.js file', () => {
   it('should create a new task when a new description and status is entered and display the task in the status column that corresponds to the task status', async function() {
     const todoCardsBefore = await page.$$eval('#todo-cards > .card', (results) => results );
