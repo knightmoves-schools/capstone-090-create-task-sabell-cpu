@@ -72,3 +72,23 @@ function drawAllCards(){
 }
 
 drawAllCards();
+
+// handle adding a new task from the form without reloading the page
+const addBtn = document.getElementById('add-task');
+if(addBtn){
+    addBtn.addEventListener('click', function(e){
+        e.preventDefault();
+        const descInput = document.getElementById('task-description');
+        const statusInput = document.getElementById('task-status');
+        const description = descInput ? descInput.value.trim() : '';
+        const status = statusInput ? statusInput.value : 'todo';
+
+        if(description.length === 0) return;
+
+        const newTask = new Task(description, status);
+        tasks.push(newTask);
+        drawAllCards();
+
+        if(descInput) descInput.value = '';
+    });
+}
